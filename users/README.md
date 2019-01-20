@@ -12,11 +12,41 @@ npm init
 ### Install application dependencies
 We use npm to install dependencies
 ```
-npm install --save express express-graphql graphql lodash json-server axios
+npm install --save express express-graphql graphql lodash json-server axios nodemon
 ```
 
 ### Start the server
 
 ```
-node server.js
+npm run dev
+```
+
+### Try Graphiql
+
+Some sample root queries below:
+
+Get User with ID '1' as a Root Node.
+
+```
+{
+  user(id: "1") {
+    id
+    firstName,
+    age
+  }
+}
+```
+Get Company with ID '2', and all the related Users, as a Root Node.
+```
+{
+  company(id: "2") { 
+  	id
+    name
+    description	
+    users {
+      id
+      firstName
+    }
+  }
+}
 ```
