@@ -36,6 +36,20 @@ Get User with ID '1' as a Root Node.
   }
 }
 ```
+Get User with ID '1', with the Company they belong to, as a Root Node.
+```
+{
+  user(id: "1") {
+    id
+    firstName,
+    age
+    company {
+      id
+      name
+    }
+  }
+}
+```
 Get Company with ID '2', and all the related Users, as a Root Node.
 ```
 {
@@ -48,5 +62,31 @@ Get Company with ID '2', and all the related Users, as a Root Node.
       firstName
     }
   }
+}
+```
+
+Crazy nesting is possible (although not terribly useful!):
+
+```
+{
+  company(id: "1") { 
+  	id
+    name
+    description	
+    users {
+      id
+      firstName
+      age
+      company {
+        name
+        users {
+          firstName
+          company {
+            name
+          }
+        }
+      }
+    }
+	}
 }
 ```
