@@ -12,5 +12,11 @@ npm init
 ### Install application dependencies
 We use npm to install dependencies
 ```
-npm install --save express express-graphql graphql lodash
+npm install --save express express-graphql graphql lodash json-server axios
+```
+
+### Start the server
+
+```
+node server.js
 ```
