@@ -15,15 +15,16 @@ We use npm to install dependencies
 npm install --save express express-graphql graphql lodash json-server axios nodemon
 ```
 
-### Start the server
+### Start the JSON RESTful server & the dev server
 
 ```
+npm run json:server
 npm run dev
 ```
 
 ### Try Graphiql
 
-Some sample root queries below:
+Open the [GraphiQL App](http://localhost:4000/graphql) in your browser and try some of the sample root queries below:
 
 Get User with ID '1' as a Root Node.
 
@@ -88,5 +89,66 @@ Crazy nesting is possible (although not terribly useful!):
       }
     }
 	}
+}
+```
+
+Named Queries
+
+```
+query findCompany {
+  company(id: "1") { 
+        id
+        name
+        description	
+	}
+}
+```
+
+Nameded results and multiple similar fetches
+
+```
+{
+  apple: company(id: "1") {
+    id
+    name
+    description
+  },
+  google: company(id: "2") {
+    id
+    name
+    description
+  }
+}
+```
+Query Fragments help to reduce duplication:
+```
+{
+    apple: company(id: "1") {
+		...companyDetails
+  },
+    google: company(id: "2") {
+		...companyDetails
+  }
+}
+
+fragment companyDetails on Company {
+  id
+  name
+  description
+}
+
+```
+
+Mutations 
+
+A mutaton to add a new User.
+
+```
+mutation {
+  addUser(firstName: "Dadou", age: 99) {
+    id
+    firstName
+    age
+  }
 }
 ```
